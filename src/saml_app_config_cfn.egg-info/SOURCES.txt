@@ -1,7 +1,0 @@
-README.md
-setup.py
-src/saml_app_config_cfn.egg-info/PKG-INFO
-src/saml_app_config_cfn.egg-info/SOURCES.txt
-src/saml_app_config_cfn.egg-info/dependency_links.txt
-src/saml_app_config_cfn.egg-info/requires.txt
-src/saml_app_config_cfn.egg-info/top_level.txt

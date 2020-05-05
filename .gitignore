@@ -1,6 +1,22 @@
-.DS_Store
-.vscode
-.venv
-
 
 *.swp
+package-lock.json
+__pycache__
+.pytest_cache
+.env
+*.egg-info
+
+dist/
+build/
+
+
+# Vscode
+.venv
+.vscode
+*.code-workspace
+
+# Pytest
+.coverage
+
+# Mac
+.DS_Store

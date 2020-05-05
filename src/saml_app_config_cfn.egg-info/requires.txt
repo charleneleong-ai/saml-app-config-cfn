@@ -1,9 +1,0 @@
-boto3
-argparse
-
-[dev]
-autopep8
-pylint
-pytest
-pytest-dotenv
-pytest-cov
