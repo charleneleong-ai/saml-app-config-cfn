@@ -15,12 +15,27 @@ In order to use it, you'll need:
 - a SAML Identity Provider (IdP)
 - the Federation metadata (an XML document) from the Identity Provider (how to get this differs for every IdP)
 
+## Create virtualenv
+
+  ```bash
+  $ python -m venv .venv
+  $ source .venv/bin/activate 
+  ```
+
+## Install dependencies
+
+  ```bash
+  $ pip install -r requirements-dev.txt
+  ```
+
 
 ## Preparing metadata
 
 Please use the [`xml_to_params.sh`](./xml_to_params.sh) script to generate `params.json` which will transform the XML metadata file to single-line JSON format to create the SamlIdentityProvider. 
 
+  ```bash
   $ xml_to_params.sh 
+  ```
 
 ## Configuration
 
@@ -57,3 +72,9 @@ For example:
 
 The stack can be updated, though the only changes you can make to the Identity Provider is to change the SAML
 Metadata document, in case you need to update the trust relationship.
+
+```bash
+$ aws cloudformation validate-template --template-body file://saml-app-config.yml
+$ aws cloudformation create-stack --stack-name  saml-app-configuration --template-body file://saml-app-config.yml --parameters file://params.json --capabilities CAPABILITY_NAMED_IAM
+$ aws cloudformation delete-stack --stack-name saml-app-configuration 
+```
