@@ -13,7 +13,7 @@ Parameters:
     Default: SamlProviderName
   SamlApp:
     Type: String
-    Description: The name of the app with which enabling SAML 2.0 Federated Users
+    Description: The name of the application required for federated access
     Default: AppName
 
 Resources:
