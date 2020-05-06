@@ -4,9 +4,12 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Configure SAML 2.0 Applications
 
 Parameters:
-  MetadataDocument:
+  StackName: 
     Type: String
-    Description: The XML metadata document to use when trusting the Identity Provider
+    Description: CloudFormation StackName
+  MetadataFile:
+    Type: String
+    Description: The XML metadata file to use when trusting the Identity Provider
   SamlProviderName:
     Type: String
     Description: The name for your SAML provider in IAM
@@ -19,16 +22,17 @@ Parameters:
 Resources:
   SamlIdentityProvider:
     Type: Custom::SamlIdentityProvider
+    DeletionPolicy : Retain
     Properties:
       ServiceToken: !GetAtt SamlProviderCreator.Arn
       Region: !Ref "AWS::Region"
-      Metadata: !Ref MetadataDocument
+      Metadata: !Ref MetadataFile
       Name: !Ref SamlProviderName
 
   SamlProviderCreator:
     Type: AWS::Lambda::Function
     Properties:
-      Runtime: python3.8
+      Runtime: python3.7
       Handler: index.lambda_handler
       MemorySize: 128
       Role: !GetAtt SamlLambdaExecutionRole.Arn
@@ -130,6 +134,7 @@ Resources:
 
   SamlFederatedAdministratorAccessRole:
     Type: AWS::IAM::Role
+    DeletionPolicy : Retain
     Properties:
       RoleName: !Sub ${SamlApp}_Administrator
       Path: /

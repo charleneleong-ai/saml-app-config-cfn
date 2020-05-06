@@ -15,6 +15,7 @@ def create_provider(name, doc):
     except Exception as e:
         return (False, f"Cannot create SAML provider: {e}")
 
+
 def delete_provider(arn):
     try:
         resp = iam.delete_saml_provider(SAMLProviderArn=arn)
@@ -28,6 +29,7 @@ def delete_provider(arn):
     except Exception as e:
         return (False, f"Cannot delete SAML provider with ARN {arn}: {e}")
 
+
 def update_provider(name, arn, doc):
         # Need to create the ARN from the name
     arn = f"arn:aws:iam::${AWS::AccountId}:saml-provider/{name}"
@@ -37,6 +39,7 @@ def update_provider(name, arn, doc):
         return (True, f"SAML provider {arn} updated")
     except Exception as e:
         return (False, f"Cannot update SAML provider {arn}: {e}")
+
 
 def lambda_handler(event, context):
     provider_xml = event['ResourceProperties']['Metadata']

@@ -13,7 +13,9 @@ with open("README.md") as fp:
 
 requirements = [
     "boto3",
-    "argparse"
+    "argparse",
+    "cfn_flip",
+    "awsume"
 ]
 
 dev_requirements = [

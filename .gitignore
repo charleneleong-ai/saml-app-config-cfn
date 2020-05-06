@@ -20,3 +20,8 @@ build/
 
 # Mac
 .DS_Store
+
+
+metadata
+
+params.json
